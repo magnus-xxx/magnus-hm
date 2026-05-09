@@ -246,9 +246,6 @@
       margin: 0 auto;
       position: relative;
       overflow: hidden;
-      /* subtle dot grid */
-      background-image: radial-gradient(circle, rgba(0,0,0,.055) 1px, transparent 1px);
-      background-size: 28px 28px;
     }
 
     /* ── Hero decorative layer ── */
@@ -258,48 +255,48 @@
       pointer-events: none;
       z-index: 0;
     }
-    /* concentric rings — upper right */
-    .hd-ring {
+
+    /* Background image — B&W blurred */
+    .hd-bg-img {
       position: absolute;
-      border-radius: 50%;
+      inset: -20px; /* slightly oversize to hide blur edges */
+      background-image: url('hero-bg.jpg');
+      background-size: cover;
+      background-position: center center;
+      filter: grayscale(100%) blur(3px) brightness(1.5) contrast(0.75);
+      opacity: 0.13;
+      transform: scale(1.05);
     }
-    .hd-ring-1 {
-      width: 540px; height: 540px;
-      right: -130px; top: -130px;
-      border: 1.5px solid rgba(0,0,0,.07);
+
+    /* White gradient — fades image toward content areas */
+    .hd-fade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right,
+          rgba(255,255,255,.92) 0%,
+          rgba(255,255,255,.5) 38%,
+          rgba(255,255,255,0) 60%,
+          rgba(255,255,255,.3) 100%),
+        linear-gradient(to bottom,
+          rgba(255,255,255,.6) 0%,
+          transparent 20%,
+          transparent 80%,
+          rgba(255,255,255,.6) 100%);
     }
-    .hd-ring-2 {
-      width: 780px; height: 780px;
-      right: -270px; top: -260px;
-      border: 1px solid rgba(0,0,0,.045);
-    }
-    .hd-ring-3 {
-      width: 1020px; height: 1020px;
-      right: -400px; top: -380px;
-      border: 1px solid rgba(0,0,0,.025);
-    }
-    /* small ring — lower left */
-    .hd-ring-4 {
-      width: 300px; height: 300px;
-      left: -90px; bottom: -90px;
-      border: 1px solid rgba(0,0,0,.05);
-    }
-    .hd-ring-5 {
-      width: 200px; height: 200px;
-      left: -50px; bottom: -50px;
-      border: 1px solid rgba(0,0,0,.07);
-    }
-    /* lime glow blob — sits behind photo card area */
+
+    /* Lime glow accent */
     .hd-blob {
       position: absolute;
       width: 560px; height: 440px;
-      right: 10%; top: 8%;
+      right: 8%; top: 5%;
       border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%;
       background: radial-gradient(ellipse at center,
-        rgba(186,250,53,.13) 0%,
-        rgba(186,250,53,.04) 50%,
+        rgba(186,250,53,.11) 0%,
+        rgba(186,250,53,.03) 50%,
         transparent 75%);
     }
+
     /* ensure grid items sit above the deco layer */
     .hero-left, .hero-center, .hero-right { position: relative; z-index: 1; }
 
@@ -2147,11 +2144,8 @@
   <section id="hero">
     <!-- Background decoration -->
     <div class="hero-deco" aria-hidden="true">
-      <div class="hd-ring hd-ring-1"></div>
-      <div class="hd-ring hd-ring-2"></div>
-      <div class="hd-ring hd-ring-3"></div>
-      <div class="hd-ring hd-ring-4"></div>
-      <div class="hd-ring hd-ring-5"></div>
+      <div class="hd-bg-img"></div>
+      <div class="hd-fade"></div>
       <div class="hd-blob"></div>
     </div>
     <!-- LEFT -->
